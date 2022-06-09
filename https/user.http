@@ -1,0 +1,16 @@
+POST http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+"username": "Ferid HELALI",
+    "email": "helaliferid@gmail.com",
+    "password": "000000"
+}
+
+###
+GET http://localhost:3000/api/users
+Content-Type: application/json
+
+{
+    "email": "helaliferid@gmail.com"
+}
