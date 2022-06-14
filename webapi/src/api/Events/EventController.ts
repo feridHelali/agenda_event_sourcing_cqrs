@@ -5,7 +5,7 @@ import EventServices from './EventServices';
 const router = express.Router();
 
 router.route('/')
-.post(EventServices.postEvents)
-.get(EventServices.getEvents);
+    .post(EventServices.postEvents)
+    .get(EventServices.getEvents);
 
 export default router;

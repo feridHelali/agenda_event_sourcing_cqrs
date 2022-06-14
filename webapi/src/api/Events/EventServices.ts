@@ -7,7 +7,6 @@ export default {
         let event = req.body;
         await EventSchema.create(event);
 
-
         buildDressRentContractTimer();
         res.json({ message: 'Post events' });
     },

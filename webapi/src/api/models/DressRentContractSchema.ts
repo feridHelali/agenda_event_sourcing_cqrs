@@ -20,10 +20,7 @@ const DressRentContractSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    customerId: {
-        type: String,
-        required: true
-    },
+    customer: String,
     status: {
         type: String,
         required: true

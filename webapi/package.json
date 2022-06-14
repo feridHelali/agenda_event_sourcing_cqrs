@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "tsc app.ts -w",
-    "start": "nodemon app"
+    "compile": "tsc ./src/app.ts -w -outDir dist",
+    "start": "nodemon ./dist/app.js"
   },
   "keywords": [],
   "author": "",

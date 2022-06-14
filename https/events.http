@@ -42,3 +42,49 @@ Content-Type: application/json
       "observation":"observation"
     }
 }
+
+###
+POST http://localhost:3000/api/events
+Content-Type: application/json
+
+{
+  "action": "UPDATE_DRESS_CONTRACT",
+  "userId": "62a24710c2fdc3ef94a8ccde",
+  "payload": {
+      "scheduleRentDate": "2018-01-01",
+      "scheduleReturnDate": "2018-01-01",
+      "rentPrice": "3100",
+      "customerId": "62a24710c2fdc3ef94a8ccde",
+      "userId": "62a24710c2fdc3ef94a8ccde",
+      "dresses":[ 
+          {
+              "dressId": "62a24710c2fdc3ef94a8ccde",
+              "code":"R1001",
+              "designation":"dress1",
+              "description":"dress1",
+              "dressType":"Modern",
+              "price":"1700"
+          },
+           {
+              "dressId": "62a24710c2fdc3ef94a8ccde",
+              "code":"R2002",
+              "designation":"Dress 2",
+              "description":"Dress 2",
+              "dressType":"Classic",
+              "price":"1700"
+          }
+      ],
+      "beautyServices":[
+          {
+              "serviceId": "62a24710c2fdc3ef94a8ccde",
+              "code":"S1001",
+              "designation":"service1",
+              "description":"service1",
+              "serviceType":"Modern",
+              "price":"200"
+          }
+      ],
+      "status":"PENDING",
+      "observation":"observation"
+    }
+}
