@@ -2,26 +2,30 @@
   "name": "webapi",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "compile": "tsc ./src/**.ts -w --outDir dist",
-    "prestart": "node ./dist/server.js",
-    "start": "nodemon ./dist/app.js"
+    "babel": "babel src --out-dir dist/src",
+    "babel:watch": "babel-watch src/index.js",
+    "prestart": "npm run babel",
+    "start": "nodemon dist/src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/cors": "^2.8.12",
-    "@types/express": "^4.17.13",
-    "@types/mongoose": "^5.11.97",
-    "typescript": "^4.7.3"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-watch": "^7.7.0",
+    "nodemon": "^2.0.16"
   },
   "dependencies": {
-    "@node-redis/client": "^1.0.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "mongodb": "^4.7.0",
-    "mongoose": "^6.3.8"
+    "mongoose": "^6.3.8",
+    "morgan": "^1.10.0",
+    "redis": "^4.1.0"
   }
 }
