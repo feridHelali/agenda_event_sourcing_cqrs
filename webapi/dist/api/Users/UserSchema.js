@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
-var mongoose = require("mongoose");
-var UserSchema = new mongoose.Schema({
+var mongoose_1 = require("mongoose");
+var UserSchema = new mongoose_1["default"].Schema({
     username: {
         type: String,
         required: true
@@ -19,4 +19,4 @@ var UserSchema = new mongoose.Schema({
 }, {
     timestamps: true
 });
-exports["default"] = mongoose.model('User', UserSchema);
+exports["default"] = mongoose_1["default"].model('User', UserSchema);
