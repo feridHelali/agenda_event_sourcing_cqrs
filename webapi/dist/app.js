@@ -3,14 +3,14 @@ exports.__esModule = true;
 var express = require("express");
 var mongoose = require("mongoose");
 var cors = require("cors");
-var EventController_1 = require("./api/Events/EventController");
+var contrat_router_1 = require("./api/contract/contrat-router");
 var UserController_1 = require("./api/Users/UserController");
 var PORT = process.env.PORT || 3000;
 var app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api/events', EventController_1["default"]);
+app.use('/api/contrat', contrat_router_1["default"]);
 app.use('/api/users', UserController_1["default"]);
 var MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/cqrsDb';
 mongoose.connect(MONGO_URL)

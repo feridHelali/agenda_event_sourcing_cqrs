@@ -1,14 +1,17 @@
-POST http://localhost:3000/api/events
+POST http://localhost:3000/api/contrat/add
 Content-Type: application/json
 
 {
-  "action": "ADD_DRESS_CONTRACT",
+  "action": "CREATE_CONTRACT",
   "userId": "62a24710c2fdc3ef94a8ccde",
   "payload": {
-      "scheduleRentDate": "2018-01-01",
-      "scheduleReturnDate": "2018-01-01",
+      "dateContrat": "2018-01-01",
       "rentPrice": "3100",
-      "customerId": "62a24710c2fdc3ef94a8ccde",
+      "customer": {
+          "fullName": "John Doe",
+          "address": "1 rue de la paix",
+          "phone": "0612345678"
+      },
       "userId": "62a24710c2fdc3ef94a8ccde",
       "dresses":[ 
           {
@@ -38,7 +41,17 @@ Content-Type: application/json
               "price":"200"
           }
       ],
-      "status":"PENDING",
       "observation":"observation"
     }
+}
+
+
+###
+POST http://localhost:3000/api/process/:id
+Content-Type: application/json
+
+{
+  "action": "PROCESS_CONTRACT",
+  "userId": "62a24710c2fdc3ef94a8ccde",
+
 }
