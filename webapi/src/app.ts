@@ -1,7 +1,8 @@
 import * as express from 'express';
 import * as mongoose from 'mongoose';
 import * as cors from 'cors';
-import EventController from './api/Events/EventController';
+import ContratController from './api/contract/contrat-router';
+
 import UserController from './api/Users/UserController';
 
 const PORT = process.env.PORT || 3000;
@@ -14,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.use('/api/events', EventController);
+app.use('/api/contrat', ContratController);
 app.use('/api/users', UserController);
 
 const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/cqrsDb';
