@@ -3,8 +3,8 @@ Content-Type: application/json
 
 {    
       "dateContrat": "2018-01-01",
-      "customerId":"",
-      "dressId":"",
+      "customerId":"62ac9fc648e8bb765c33fd4d",
+      "dressId":"62aca270851b1a7af23cdcd3",
       "beautyServices":["62a24710c2fdc3ef94a8ccde","62a24710c2fdc3ef94a8ccde","62a24710c2fdc3ef94a8ccde"],
       "observation":"observation"
 }
@@ -12,11 +12,4 @@ Content-Type: application/json
 
 
 ###
-POST http://localhost:3000/api/process/:id
-Content-Type: application/json
 
-{
-  "action": "PROCESS_CONTRACT",
-  "userId": "62a24710c2fdc3ef94a8ccde",
-
-}

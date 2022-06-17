@@ -38,35 +38,41 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 exports.getFindDresses = exports.processContractHandler = exports.getAllPendingContractHandler = exports.findOrCreateNewContratHandler = void 0;
 var customer_model_1 = require("../customer/customer.model");
-var listContrat_projection_1 = require("./listContrat-projection");
+var dress_model_1 = require("../dress/dress.model");
+var ListContrats_1 = require("./ListContrats");
 var findOrCreateNewContratHandler = function (event) { return __awaiter(void 0, void 0, void 0, function () {
-    var payload, listContratFixedDress, _a, _b, lcp, result;
-    var _c;
-    return __generator(this, function (_d) {
-        switch (_d.label) {
+    var payload, listContratFixedDress, lcp, _a, result;
+    var _b;
+    return __generator(this, function (_c) {
+        switch (_c.label) {
             case 0:
                 payload = event.payload;
-                if (!(event.action === 'CONTRACT_ADDED')) return [3 /*break*/, 4];
-                _b = (_a = listContrat_projection_1["default"]).find;
-                _c = {
+                if (!(event.action === 'CONTRACT_ADDED')) return [3 /*break*/, 5];
+                return [4 /*yield*/, ListContrats_1["default"].find({
+                        dateContrat: payload.dateContrat,
+                        'dress._id': payload.dressId
+                    }).countDocuments()];
+            case 1:
+                listContratFixedDress = _c.sent();
+                console.log(listContratFixedDress);
+                if (!(listContratFixedDress === 0)) return [3 /*break*/, 5];
+                _a = ListContrats_1["default"].bind;
+                _b = {
                     dateContrat: payload.dateContrat
                 };
-                return [4 /*yield*/, customer_model_1.Customer.find({ _id: payload.customerId })
-                    // dress:await Dress.find({_id:payload.dressId},
-                ];
-            case 1: return [4 /*yield*/, _b.apply(_a, [(_c.customer = _d.sent(),
-                        _c)])];
+                return [4 /*yield*/, customer_model_1.Customer.find({ _id: payload.customerId })];
             case 2:
-                listContratFixedDress = _d.sent();
-                if (!(listContratFixedDress.length === 0)) return [3 /*break*/, 4];
-                lcp = new listContrat_projection_1["default"]({
-                    dateContrat: payload.dateContrat
-                });
-                return [4 /*yield*/, lcp.save()];
+                _b.customer = _c.sent();
+                return [4 /*yield*/, dress_model_1.Dress.findOne({ _id: payload.dressId })];
             case 3:
-                result = _d.sent();
+                lcp = new (_a.apply(ListContrats_1["default"], [void 0, (_b.dress = _c.sent(),
+                        _b)]))();
+                return [4 /*yield*/, lcp.save()];
+            case 4:
+                result = _c.sent();
+                console.log('result ', result);
                 return [2 /*return*/, result];
-            case 4: return [2 /*return*/];
+            case 5: return [2 /*return*/];
         }
     });
 }); };
@@ -75,7 +81,7 @@ var getAllPendingContractHandler = function () { return __awaiter(void 0, void 0
     var listContratProjection;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, listContrat_projection_1["default"].find({ status: 'En cours' })];
+            case 0: return [4 /*yield*/, ListContrats_1["default"].find({ status: 'En cours' })];
             case 1:
                 listContratProjection = _a.sent();
                 return [2 /*return*/, listContratProjection];
@@ -88,7 +94,7 @@ var processContractHandler = function (id, event) { return __awaiter(void 0, voi
         switch (_a.label) {
             case 0:
                 if (!(event.action === 'DONE_CONTRACT')) return [3 /*break*/, 2];
-                return [4 /*yield*/, listContrat_projection_1["default"].findByIdAndUpdate(id, { status: 'Terminé' })];
+                return [4 /*yield*/, ListContrats_1["default"].findByIdAndUpdate(id, { status: 'Terminé' })];
             case 1:
                 _a.sent();
                 _a.label = 2;
@@ -101,7 +107,7 @@ var getFindDresses = function () { return __awaiter(void 0, void 0, void 0, func
     var listContratFixedDress;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, listContrat_projection_1["default"].find({ status: 'vérifier' })];
+            case 0: return [4 /*yield*/, ListContrats_1["default"].find({ status: 'vérifier' })];
             case 1:
                 listContratFixedDress = _a.sent();
                 return [2 /*return*/, listContratFixedDress];

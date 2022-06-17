@@ -1,0 +1,11 @@
+POST http://localhost:3000/api/dress/add
+Content-Type: application/json
+
+{
+    "code":"RB001",
+    "designation":"Robe de Mariage RB001",
+    "prix":2500,
+    "typeDress":"Classic"
+}
+
+###
