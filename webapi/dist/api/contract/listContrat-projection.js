@@ -2,11 +2,14 @@
 exports.__esModule = true;
 var mongoose = require("mongoose");
 var ListContrat = new mongoose.Schema({
+    userId: {
+        type: String
+    },
     dateContrat: {
         type: Date,
         required: true
     },
-    cunstomer: {
+    customer: {
         fullName: {
             type: String
         },

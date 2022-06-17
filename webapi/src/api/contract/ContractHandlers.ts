@@ -1,17 +1,28 @@
+
+
 import { AGEvent } from "../Events/AGEvent";
 import ListContratProjection from "./listContrat-projection";
 
 
-export const createContractHandler = async (event:AGEvent) => {
-    
+
+
+export const findOrCreateNewContratHandler = async (event:AGEvent) => {
+    let payload=event.payload;
     if(event.action === 'CREATE_CONTRACT'){
-        const listContratProjection = new ListContratProjection();
-        listContratProjection.dateContrat = event.payload.dateContrat;
-        listContratProjection.cunstomer = event.payload.customer;
-        listContratProjection.robes = event.payload.dresses;
-        listContratProjection.service = event.payload.bcservices;
-        listContratProjection.status = 'En cours';
-        await listContratProjection.save();
+        let listContratFixedDress = await ListContratProjection.find({
+            dateContrat:payload.dateContrat,
+            dressId:payload.robes
+        });
+
+       if(listContratFixedDress.length ===0 ){
+           let lcp=new ListContratProjection({
+               dateContrat:payload.dateContrat,
+              // customer:await Customer.find{_id:payload.customerId}
+           })
+           let result = await lcp.save();
+           return result; 
+        }
+        
     }
 
 }
@@ -26,5 +37,10 @@ export const processContractHandler = async (id:string, event:AGEvent) => {
         await ListContratProjection.findByIdAndUpdate(id, {status:'Terminé'});
         
     }
+}
+
+export const getFindDresses = async ()=>{
+  const listContratFixedDress = await ListContratProjection.find({status:'vérifier'});
+   return listContratFixedDress;
 }
 

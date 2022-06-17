@@ -1,13 +1,13 @@
 import * as express from 'express';
 import { AGEvent } from '../Events/AGEvent';
-import { createContractHandler, getAllPendingContractHandler, processContractHandler } from './ContractHandlers';
+import {  getAllPendingContractHandler, processContractHandler, findOrCreateNewContratHandler, getFindDresses } from './ContractHandlers';
 
 const router = express.Router();
 
-router.post('/add', (req: express.Request, res: express.Response) => {
+router.post('/add', async (req: express.Request, res: express.Response) => {
     let event:AGEvent = req.body;
-    createContractHandler(event);
-    res.json({message:'contrat ajouter'})
+    let result = await findOrCreateNewContratHandler(event);
+    res.json({message:result})
 
 });
 
@@ -21,6 +21,10 @@ router.put('/process/:id', (req: express.Request, res: express.Response) => {
 router.get('/all',async  (req: express.Request, res: express.Response) => {
     res.json({"contracts":await getAllPendingContractHandler()});
 });
+
+router.get('/finddress',async (req: express.Request, res: express.Response) =>{
+    res.json({"dress":await getFindDresses()});
+})
 
 
 export  default router;

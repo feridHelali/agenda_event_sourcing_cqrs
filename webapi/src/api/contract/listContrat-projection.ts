@@ -2,11 +2,14 @@ import * as mongoose from 'mongoose';
 
 
 const ListContrat= new mongoose.Schema({
+    userId: {
+        type: String,
+    },
     dateContrat: {
         type: Date,
         required: true
     },
-    cunstomer: {
+    customer: {
         fullName: {
             type: String
         },

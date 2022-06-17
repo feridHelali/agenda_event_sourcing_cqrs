@@ -36,29 +36,34 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.processContractHandler = exports.getAllPendingContractHandler = exports.createContractHandler = void 0;
+exports.getFindDresses = exports.processContractHandler = exports.getAllPendingContractHandler = exports.findOrCreateNewContratHandler = void 0;
 var listContrat_projection_1 = require("./listContrat-projection");
-var createContractHandler = function (event) { return __awaiter(void 0, void 0, void 0, function () {
-    var listContratProjection;
+var findOrCreateNewContratHandler = function (event) { return __awaiter(void 0, void 0, void 0, function () {
+    var payload, listContratFixedDress, lcp, result;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                if (!(event.action === 'CREATE_CONTRACT')) return [3 /*break*/, 2];
-                listContratProjection = new listContrat_projection_1["default"]();
-                listContratProjection.dateContrat = event.payload.dateContrat;
-                listContratProjection.cunstomer = event.payload.customer;
-                listContratProjection.robes = event.payload.dresses;
-                listContratProjection.service = event.payload.bcservices;
-                listContratProjection.status = 'En cours';
-                return [4 /*yield*/, listContratProjection.save()];
+                payload = event.payload;
+                if (!(event.action === 'CREATE_CONTRACT')) return [3 /*break*/, 3];
+                return [4 /*yield*/, listContrat_projection_1["default"].find({
+                        dateContrat: payload.dateContrat,
+                        dressId: payload.robes
+                    })];
             case 1:
-                _a.sent();
-                _a.label = 2;
-            case 2: return [2 /*return*/];
+                listContratFixedDress = _a.sent();
+                if (!(listContratFixedDress.length === 0)) return [3 /*break*/, 3];
+                lcp = new listContrat_projection_1["default"]({
+                    dateContrat: payload.dateContrat
+                });
+                return [4 /*yield*/, lcp.save()];
+            case 2:
+                result = _a.sent();
+                return [2 /*return*/, result];
+            case 3: return [2 /*return*/];
         }
     });
 }); };
-exports.createContractHandler = createContractHandler;
+exports.findOrCreateNewContratHandler = findOrCreateNewContratHandler;
 var getAllPendingContractHandler = function () { return __awaiter(void 0, void 0, void 0, function () {
     var listContratProjection;
     return __generator(this, function (_a) {
@@ -85,3 +90,15 @@ var processContractHandler = function (id, event) { return __awaiter(void 0, voi
     });
 }); };
 exports.processContractHandler = processContractHandler;
+var getFindDresses = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var listContratFixedDress;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, listContrat_projection_1["default"].find({ status: 'vérifier' })];
+            case 1:
+                listContratFixedDress = _a.sent();
+                return [2 /*return*/, listContratFixedDress];
+        }
+    });
+}); };
+exports.getFindDresses = getFindDresses;
