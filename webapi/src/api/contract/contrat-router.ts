@@ -5,7 +5,13 @@ import {  getAllPendingContractHandler, processContractHandler, findOrCreateNewC
 const router = express.Router();
 
 router.post('/add', async (req: express.Request, res: express.Response) => {
-    let event:AGEvent = req.body;
+    let payload=req.body;
+       
+    let event:AGEvent = {
+        action:'CONTRACT_ADDED',
+        payload:payload
+    }
+    
     let result = await findOrCreateNewContratHandler(event);
     res.json({message:result})
 

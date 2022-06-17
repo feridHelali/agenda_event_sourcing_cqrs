@@ -36,62 +36,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var express = require("express");
-var ContractHandlers_1 = require("./ContractHandlers");
-var router = express.Router();
-router.post('/add', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var payload, event, result;
+exports.addCustomer = void 0;
+var customer_model_1 = require("./customer.model");
+var addCustomer = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var customer, result;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                payload = req.body;
-                event = {
-                    action: 'CONTRACT_ADDED',
-                    payload: payload
-                };
-                return [4 /*yield*/, (0, ContractHandlers_1.findOrCreateNewContratHandler)(event)];
+                customer = req.body;
+                return [4 /*yield*/, customer_model_1.Customer.create(customer)];
             case 1:
                 result = _a.sent();
-                res.json({ message: result });
-                return [2 /*return*/];
+                return [2 /*return*/, res.json({ message: 'New Customer Added', pyload: result })];
         }
     });
-}); });
-router.put('/process/:id', function (req, res) {
-    var event = req.body;
-    (0, ContractHandlers_1.processContractHandler)(req.params.id, event);
-    res.json({ message: 'contrat terminé' });
-});
-router.get('/all', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, _b, _c;
-    var _d;
-    return __generator(this, function (_e) {
-        switch (_e.label) {
-            case 0:
-                _b = (_a = res).json;
-                _d = {};
-                _c = "contracts";
-                return [4 /*yield*/, (0, ContractHandlers_1.getAllPendingContractHandler)()];
-            case 1:
-                _b.apply(_a, [(_d[_c] = _e.sent(), _d)]);
-                return [2 /*return*/];
-        }
-    });
-}); });
-router.get('/finddress', function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var _a, _b, _c;
-    var _d;
-    return __generator(this, function (_e) {
-        switch (_e.label) {
-            case 0:
-                _b = (_a = res).json;
-                _d = {};
-                _c = "dress";
-                return [4 /*yield*/, (0, ContractHandlers_1.getFindDresses)()];
-            case 1:
-                _b.apply(_a, [(_d[_c] = _e.sent(), _d)]);
-                return [2 /*return*/];
-        }
-    });
-}); });
-exports["default"] = router;
+}); };
+exports.addCustomer = addCustomer;

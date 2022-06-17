@@ -1,29 +1,14 @@
 import * as mongoose from 'mongoose';
 
 
-const ListContrat= new mongoose.Schema({
-    userId: {
-        type: String,
-    },
+const ListContrats= new mongoose.Schema({
     dateContrat: {
         type: Date,
         required: true
     },
-    customer: {
-        fullName: {
-            type: String
-        },
-        address: {
-            type: String
-        },
-        phone: {
-            type: String
-        }
-    },
-    
-    robes:Array,
+    customer: Object,
+    dress: Object,
     service:Array,
-
     status: {
         type: String,
         required: true,
@@ -35,4 +20,4 @@ const ListContrat= new mongoose.Schema({
     }
 );
 
-export default mongoose.model('ListContrat', ListContrat);
+export default mongoose.model('ListContrat', ListContrats);

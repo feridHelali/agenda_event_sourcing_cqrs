@@ -1,49 +1,14 @@
 POST http://localhost:3000/api/contrat/add
 Content-Type: application/json
 
-{
-  "action": "CREATE_CONTRACT",
-  "userId": "62a24710c2fdc3ef94a8ccde",
-  "payload": {
+{    
       "dateContrat": "2018-01-01",
-      "rentPrice": "3100",
-      "customer": {
-          "fullName": "John Doe",
-          "address": "1 rue de la paix",
-          "phone": "0612345678"
-      },
-      "userId": "62a24710c2fdc3ef94a8ccde",
-      "dresses":[ 
-          {
-              "dressId": "62a24710c2fdc3ef94a8ccde",
-              "code":"R1001",
-              "designation":"dress1",
-              "description":"dress1",
-              "dressType":"Modern",
-              "price":"1700"
-          },
-           {
-              "dressId": "62a24710c2fdc3ef94a8ccde",
-              "code":"R2002",
-              "designation":"Dress 2",
-              "description":"Dress 2",
-              "dressType":"Classic",
-              "price":"1700"
-          }
-      ],
-      "beautyServices":[
-          {
-              "serviceId": "62a24710c2fdc3ef94a8ccde",
-              "code":"S1001",
-              "designation":"service1",
-              "description":"service1",
-              "serviceType":"Modern",
-              "price":"200"
-          }
-      ],
+      "customerId":"",
+      "dressId":"",
+      "beautyServices":["62a24710c2fdc3ef94a8ccde","62a24710c2fdc3ef94a8ccde","62a24710c2fdc3ef94a8ccde"],
       "observation":"observation"
-    }
 }
+
 
 
 ###

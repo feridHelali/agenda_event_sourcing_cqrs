@@ -1,5 +1,6 @@
 
 
+import { Customer } from "../customer/customer.model";
 import { AGEvent } from "../Events/AGEvent";
 import ListContratProjection from "./listContrat-projection";
 
@@ -8,10 +9,12 @@ import ListContratProjection from "./listContrat-projection";
 
 export const findOrCreateNewContratHandler = async (event:AGEvent) => {
     let payload=event.payload;
-    if(event.action === 'CREATE_CONTRACT'){
+    if(event.action === 'CONTRACT_ADDED'){
         let listContratFixedDress = await ListContratProjection.find({
             dateContrat:payload.dateContrat,
-            dressId:payload.robes
+            customer:await Customer.find({_id:payload.customerId})
+           // dress:await Dress.find({_id:payload.dressId},
+
         });
 
        if(listContratFixedDress.length ===0 ){

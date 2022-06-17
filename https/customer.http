@@ -1,0 +1,9 @@
+POST http://localhost:3000/api/customer/add
+Content-Type: application/json
+
+{
+    "fullName":"Ahlem Bent KHLET Sirine",
+    "address":"Av Habib Bourguiba",
+    "city":"La Sokkra, Ariana",
+    "phone":"32 659 560"
+}

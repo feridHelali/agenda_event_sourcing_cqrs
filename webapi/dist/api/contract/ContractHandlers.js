@@ -37,29 +37,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.getFindDresses = exports.processContractHandler = exports.getAllPendingContractHandler = exports.findOrCreateNewContratHandler = void 0;
+var customer_model_1 = require("../customer/customer.model");
 var listContrat_projection_1 = require("./listContrat-projection");
 var findOrCreateNewContratHandler = function (event) { return __awaiter(void 0, void 0, void 0, function () {
-    var payload, listContratFixedDress, lcp, result;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
+    var payload, listContratFixedDress, _a, _b, lcp, result;
+    var _c;
+    return __generator(this, function (_d) {
+        switch (_d.label) {
             case 0:
                 payload = event.payload;
-                if (!(event.action === 'CREATE_CONTRACT')) return [3 /*break*/, 3];
-                return [4 /*yield*/, listContrat_projection_1["default"].find({
-                        dateContrat: payload.dateContrat,
-                        dressId: payload.robes
-                    })];
-            case 1:
-                listContratFixedDress = _a.sent();
-                if (!(listContratFixedDress.length === 0)) return [3 /*break*/, 3];
+                if (!(event.action === 'CONTRACT_ADDED')) return [3 /*break*/, 4];
+                _b = (_a = listContrat_projection_1["default"]).find;
+                _c = {
+                    dateContrat: payload.dateContrat
+                };
+                return [4 /*yield*/, customer_model_1.Customer.find({ _id: payload.customerId })
+                    // dress:await Dress.find({_id:payload.dressId},
+                ];
+            case 1: return [4 /*yield*/, _b.apply(_a, [(_c.customer = _d.sent(),
+                        _c)])];
+            case 2:
+                listContratFixedDress = _d.sent();
+                if (!(listContratFixedDress.length === 0)) return [3 /*break*/, 4];
                 lcp = new listContrat_projection_1["default"]({
                     dateContrat: payload.dateContrat
                 });
                 return [4 /*yield*/, lcp.save()];
-            case 2:
-                result = _a.sent();
+            case 3:
+                result = _d.sent();
                 return [2 /*return*/, result];
-            case 3: return [2 /*return*/];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
